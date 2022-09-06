@@ -12,7 +12,6 @@ export default class App extends Component {
   render() {
     return (
       <Router>
-      <NavBar/>
         <Routes>
           <Route path="/" element={<PaginaPrincipal />}/>
           <Route path="/login" element={<LoginForm/>}/>

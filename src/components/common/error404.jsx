@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class Error404 extends Component {
   render() {
     return (
-      <div>Error 404 page no found</div>
+      <div>Error 404 pagina no encontrada</div>
     )
   }
 }

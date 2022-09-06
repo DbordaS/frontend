@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { BASE_URL } from '../../services/apiService';
 import './LoginForm.scss'
+import Navbars from './Navbar';
 
 export default class LoginForm extends Component {
     constructor(props){
@@ -17,17 +18,19 @@ export default class LoginForm extends Component {
         ]
     }
 
-    componentDidMount(){
-        axios.get(`${BASE_URL}/login`).then(res => {
-            console.log(res);
-        })
-    }
+    // componentDidMount(){
+    //     axios.get(`${BASE_URL}/login`).then(res => {
+    //         console.log(res);
+    //     })
+    // }
 
     render() {
     return (
         <React.Fragment>
-            <div className='login wrapper-content'>
+            <Navbars/>
+            <div className='login'>
             <Form className='login__content'>
+                <h2 className='login__title'>Login</h2>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Documento de identidad</Form.Label>
                     <Form.Control type="email" placeholder="Ingresa tu Documento" />

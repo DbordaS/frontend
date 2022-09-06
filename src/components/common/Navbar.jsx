@@ -1,31 +1,31 @@
 import React, { Component } from 'react'
-import { Menubar } from 'primereact/menubar';
 import 'primeicons/primeicons.css';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 
 
-export default class Navbar extends Component {
+
+export default class Navbars extends Component {
   
 
    render() {
-       const items= [
-           {
-               label:'Inicio',
-               icon:'pi pi-fw pi-home',
-               command: ()=> window.location=('/')
-           },
-           {
-              label:'Iniciar Sesion',
-              icon:'pi pi-fw pi-sign-in',
-              command:()=> window.location=('/login')
-           },
-           {
-              label:'Registrarse',
-              icon:'pi pi-fw pi-list',
-              command: ()=> window.location=('/register')
-           }
-       ]
     return (
-        <Menubar model={items}/>
+        // <Menubar model={items}/>
+        <Navbar bg="light" expand="lg">
+      <Container>
+        <Navbar.Brand href="/">Participacion Ciudadana</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto justify-content-start">
+          </Nav>
+          <Nav>
+            <Nav.Link href="/login">Iniciar Sesion</Nav.Link>
+            <Nav.Link href="/register">Registrarse</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
     )
   }
 }
