@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import { BASE_URL } from '../../services/apiService';
-import './LoginForm.scss'
+import IconUSer from '../../assets/iconuser.png'
 import Navbars from './Navbar';
+import './LoginForm.scss'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
+
 
 export default class LoginForm extends Component {
     constructor(props){
         super(props)
     }
     state = {
-        form:[
-            {
-                "documento":'',
-                "contraseña":''
+        form:{
+                "username":'',
+                "password":''
             }
-        ]
     }
 
     // componentDidMount(){
@@ -24,28 +24,58 @@ export default class LoginForm extends Component {
     //     })
     // }
 
+    handlerDefault=e=>{
+        e.preventDefault();
+    }
+
+    handlerChange = async e =>{
+        await this.setState({
+                    form:{
+                        ...this.state.form,
+                        [e.target.name]:e.target.value
+                    }
+            })
+    }
+
+    handlerSubmit = ()=>{
+        let url = `${BASE_URL}api/login`
+        axios.post(url,this.state.form).then(res =>{
+            console.log(res);
+            if (res.status === 200) {
+                localStorage.setItem("user",res.data.rol)
+                localStorage.setItem("username",this.state.form.username)
+                const typeuser = localStorage.getItem("user")
+                localStorage.setItem("token",res.data.token)
+                window.location=(`/paginaprincipal/${typeuser}`)
+            }
+        })
+    }
+
     render() {
     return (
-        <React.Fragment>
-            <Navbars/>
-            <div className='login'>
-            <Form className='login__content'>
-                <h2 className='login__title'>Login</h2>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Documento de identidad</Form.Label>
-                    <Form.Control type="email" placeholder="Ingresa tu Documento" />
-                </Form.Group>
+            <div>
+                <Navbars/> 
+            <div className="wrapper fadeInDown">
+                <div id="formContent">
+                    <div className="fadeIn first">
+                    <img src={IconUSer} id="icon" alt="User Icon" />
+                    </div>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Contraseña" />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Enviar
-                </Button>
-            </Form>
+
+                    <form onSubmit={this.handlerDefault}>
+                    <input type="text" className="fadeIn second" name="username" placeholder="Nombre de usuario" onChange={this.handlerChange}/>
+                    <input type="password" id="contrasena" className="fadeIn third" name="password" placeholder="Contraseña" onChange={this.handlerChange}/>
+                    <input type="submit" className="fadeIn fourth" value="Iniciar Sesion" onClick={this.handlerSubmit}/>
+                    </form>
+
+                    <div id="formFooter">
+                    <p>No estas Registrado? <a className="underlineHover" href="/register"> Registrate aqui</a></p>
+                    </div>
+
+                </div>
             </div>
-        </React.Fragment>
+
+            </div>
     )
   }
 }

@@ -1,20 +1,28 @@
 import React, { Component } from 'react'
-import 'primeicons/primeicons.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
 
 
-export default class Navbars extends Component {
-  
+export default class Navbars extends Component { 
 
-   render() {
+  botonredireccion=()=>{
+    const usuario = localStorage.getItem("user")
+    if(usuario === "admin"){
+      window.location=('/paginaprincipal/admin/')
+    }else if(usuario === "user"){
+      window.location=('/paginaprincipal/user')
+    }else {
+      window.location=('/')
+    }
+  }
+
+  render() {
     return (
-        // <Menubar model={items}/>
         <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="/">Participacion Ciudadana</Navbar.Brand>
+        <Navbar.Brand>Participacion Ciudadana</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto justify-content-start">
