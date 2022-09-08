@@ -262,8 +262,8 @@ export default class RegisterForm extends Component {
                 </div>
             </div>
             <h4>NUEVA CONTRASEÑA</h4>
-            <input type="password" id="pw1" className="fadeIn third" name="contraseña" placeholder="Nueva Contraseña" onChange={this.handlerChangea}/>
-            <input type="text" id="pw2" className="fadeIn third" name="usuario" placeholder="usuario" onChange={this.handlerChangea}/>
+            <input type="password" id="pw1" className="fadeIn third" name="password" placeholder="Nueva Contraseña" onChange={this.handlerChangea}/>
+            <input type="text" id="pw2" className="fadeIn third" name="username" placeholder="usuario" onChange={this.handlerChangea}/>
             <input type="submit" className="fadeIn fourth" value="Registrarse" onClick={this.handlerSubmit}/>
 
             </form>
